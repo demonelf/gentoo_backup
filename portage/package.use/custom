@@ -1,0 +1,6 @@
+app-editors/vim cscope python
+net-misc/remmina rdp vnc ssh
+gnome-base/gvfs udisks
+app-emulation/qemu virgl
+app-emulation/libvirt virt-network
+

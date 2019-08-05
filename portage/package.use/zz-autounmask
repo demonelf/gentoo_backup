@@ -1,0 +1,180 @@
+# package.use# required by dev-util/itstool-2.0.2::gentoo
+# required by gnome-extra/gnome-color-manager-3.30.0-r1::gentoo
+# required by gnome-base/gnome-control-center-3.30.3-r1::gentoo
+# required by net-libs/gnome-online-accounts-3.30.2::gentoo[gnome]
+# required by gnome-extra/evolution-data-server-3.30.5-r1::gentoo[gnome-online-accounts]
+# required by gnome-base/gnome-shell-3.30.2-r2::gentoo
+# required by virtual/notification-daemon-0::gentoo[gnome]
+# required by x11-libs/libnotify-0.7.7-r1::gentoo
+# required by gnome-base/gnome-settings-daemon-3.30.2-r1::gentoo
+# required by gnome-base/gnome-session-3.30.1-r1::gentoo
+# required by gnome-base/gdm-3.30.3-r3::gentoo
+>=dev-libs/libxml2-2.9.9-r1 python
+# required by gnome-base/gnome-shell-3.30.2-r2::gentoo
+# required by virtual/notification-daemon-0::gentoo[gnome]
+# required by x11-libs/libnotify-0.7.7-r1::gentoo
+# required by gnome-base/gnome-settings-daemon-3.30.2-r1::gentoo
+# required by gnome-base/gnome-session-3.30.1-r1::gentoo
+# required by gnome-base/gdm-3.30.3-r3::gentoo
+>=gnome-base/gnome-control-center-3.30.3-r1 networkmanager
+# required by x11-misc/xdg-utils-1.1.3-r1::gentoo
+# required by net-print/cups-2.2.11::gentoo[X]
+# required by gnome-base/gnome-settings-daemon-3.30.2-r1::gentoo[cups]
+# required by gnome-base/gnome-session-3.30.1-r1::gentoo
+# required by gnome-base/gnome-control-center-3.30.3-r1::gentoo
+# required by net-libs/gnome-online-accounts-3.30.2::gentoo[gnome]
+# required by gnome-extra/evolution-data-server-3.30.5-r1::gentoo[gnome-online-accounts]
+# required by gnome-base/gnome-shell-3.30.2-r2::gentoo
+# required by virtual/notification-daemon-0::gentoo[gnome]
+# required by x11-libs/libnotify-0.7.7-r1::gentoo
+# required by gnome-extra/nm-applet-1.8.20::gentoo
+>=app-text/xmlto-0.0.28-r1 text
+# required by media-sound/pulseaudio-12.2-r1::gentoo[alsa-plugin,alsa]
+# required by gnome-base/gnome-settings-daemon-3.30.2-r1::gentoo
+# required by gnome-base/gnome-session-3.30.1-r1::gentoo
+# required by gnome-base/gnome-control-center-3.30.3-r1::gentoo
+# required by net-libs/gnome-online-accounts-3.30.2::gentoo[gnome]
+# required by gnome-extra/evolution-data-server-3.30.5-r1::gentoo[gnome-online-accounts]
+# required by gnome-base/gnome-shell-3.30.2-r2::gentoo
+# required by virtual/notification-daemon-0::gentoo[gnome]
+# required by x11-libs/libnotify-0.7.7-r1::gentoo
+# required by gnome-extra/nm-applet-1.8.20::gentoo
+>=media-plugins/alsa-plugins-1.1.8 pulseaudio
+# required by gnome-base/gnome-keyring-3.28.2::gentoo
+# required by app-crypt/libsecret-0.18.8::gentoo
+# required by gnome-extra/nm-applet-1.8.20::gentoo
+# required by gnome-base/gnome-control-center-3.30.3-r1::gentoo[networkmanager]
+# required by net-libs/gnome-online-accounts-3.30.2::gentoo[gnome]
+# required by gnome-extra/evolution-data-server-3.30.5-r1::gentoo[gnome-online-accounts]
+# required by gnome-base/gnome-shell-3.30.2-r2::gentoo
+# required by virtual/notification-daemon-0::gentoo[gnome]
+# required by x11-libs/libnotify-0.7.7-r1::gentoo
+# required by gnome-base/gnome-settings-daemon-3.30.2-r1::gentoo
+# required by gnome-base/gnome-session-3.30.1-r1::gentoo
+# required by gnome-base/gdm-3.30.3-r3::gentoo
+>=app-crypt/pinentry-1.1.0-r2 gnome-keyring
+# required by net-misc/networkmanager-1.16.0::gentoo[wifi]
+# required by gnome-extra/nm-applet-1.8.20::gentoo
+# required by gnome-base/gnome-control-center-3.30.3-r1::gentoo[networkmanager]
+# required by net-libs/gnome-online-accounts-3.30.2::gentoo[gnome]
+# required by gnome-extra/evolution-data-server-3.30.5-r1::gentoo[gnome-online-accounts]
+# required by gnome-base/gnome-shell-3.30.2-r2::gentoo
+# required by virtual/notification-daemon-0::gentoo[gnome]
+# required by x11-libs/libnotify-0.7.7-r1::gentoo
+# required by gnome-base/gnome-settings-daemon-3.30.2-r1::gentoo
+# required by gnome-base/gnome-session-3.30.1-r1::gentoo
+# required by gnome-base/gdm-3.30.3-r3::gentoo
+>=net-wireless/wpa_supplicant-2.6-r10 dbus
+# required by sys-auth/polkit-0.115-r4::gentoo[systemd]
+# required by gnome-extra/polkit-gnome-0.105-r1::gentoo
+>=sys-apps/systemd-242-r6 policykit
+# required by dev-lang/spidermonkey-60.5.2_p0-r2::gentoo
+# required by dev-libs/gjs-1.54.3::gentoo
+# required by gnome-extra/sushi-3.30.0::gentoo
+# required by gnome-base/nautilus-3.30.5::gentoo[previewer]
+# required by x11-terms/gnome-terminal-3.30.3::gentoo[nautilus]
+# required by gnome-base/gnome-light-3.30.2::gentoo
+# required by gnome-base/gnome-light (argument)
+>=dev-lang/python-2.7.15:2.7 sqlite
+# required by net-libs/webkit-gtk-2.24.2::gentoo
+# required by gnome-extra/sushi-3.30.0::gentoo
+# required by gnome-base/nautilus-3.30.5::gentoo[previewer]
+# required by x11-terms/gnome-terminal-3.30.3::gentoo[nautilus]
+# required by gnome-base/gnome-light-3.30.2::gentoo
+# required by gnome-base/gnome-light (argument)
+>=media-libs/harfbuzz-2.3.1 icu
+# required by x11-libs/libxkbcommon-0.8.4::gentoo[X]
+# required by x11-wm/mutter-3.30.2-r1::gentoo
+# required by gnome-base/gnome-shell-3.30.2-r2::gentoo
+# required by virtual/notification-daemon-0::gentoo[gnome]
+# required by x11-libs/libnotify-0.7.7-r1::gentoo
+# required by gnome-base/gnome-settings-daemon-3.30.2-r1::gentoo
+# required by gnome-base/gnome-session-3.30.1-r1::gentoo
+# required by gnome-base/gnome-control-center-3.30.3-r1::gentoo
+# required by net-libs/gnome-online-accounts-3.30.2::gentoo[gnome]
+# required by gnome-extra/evolution-data-server-3.30.5-r1::gentoo[gnome-online-accounts]
+>=x11-libs/libxcb-1.13.1 xkb
+# required by app-text/evince-3.30.2::gentoo
+# required by gnome-extra/sushi-3.30.0::gentoo
+# required by gnome-base/nautilus-3.30.5::gentoo[previewer]
+# required by x11-terms/gnome-terminal-3.30.3::gentoo[nautilus]
+# required by gnome-base/gnome-light-3.30.2::gentoo
+# required by gnome-base/gnome-light (argument)
+>=dev-libs/glib-2.58.3-r1 dbus
+# required by app-text/evince-3.30.2::gentoo
+# required by gnome-extra/sushi-3.30.0::gentoo
+# required by gnome-base/nautilus-3.30.5::gentoo[previewer]
+# required by x11-terms/gnome-terminal-3.30.3::gentoo[nautilus]
+# required by gnome-base/gnome-light-3.30.2::gentoo
+# required by gnome-base/gnome-light (argument)
+>=app-text/poppler-0.77.0 cairo
+# required by gnome-base/gnome-control-center-3.30.3-r1::gentoo[cups]
+# required by net-libs/gnome-online-accounts-3.30.2::gentoo[gnome]
+# required by gnome-extra/evolution-data-server-3.30.5-r1::gentoo[gnome-online-accounts]
+# required by gnome-base/gnome-shell-3.30.2-r2::gentoo
+# required by virtual/notification-daemon-0::gentoo[gnome]
+# required by x11-libs/libnotify-0.7.7-r1::gentoo
+# required by gnome-base/gnome-settings-daemon-3.30.2-r1::gentoo
+# required by gnome-base/gnome-session-3.30.1-r1::gentoo
+# required by gnome-base/gdm-3.30.3-r3::gentoo
+>=net-print/cups-2.2.11 dbus
+# required by gnome-base/gnome-control-center-3.30.3-r1::gentoo[cups]
+# required by net-libs/gnome-online-accounts-3.30.2::gentoo[gnome]
+# required by gnome-extra/evolution-data-server-3.30.5-r1::gentoo[gnome-online-accounts]
+# required by gnome-base/gnome-shell-3.30.2-r2::gentoo
+# required by virtual/notification-daemon-0::gentoo[gnome]
+# required by x11-libs/libnotify-0.7.7-r1::gentoo
+# required by gnome-base/gnome-settings-daemon-3.30.2-r1::gentoo
+# required by gnome-base/gnome-session-3.30.1-r1::gentoo
+# required by gnome-base/gdm-3.30.3-r3::gentoo
+>=net-fs/samba-4.8.6-r2 client
+# required by net-print/cups-filters-1.21.6::gentoo[postscript]
+# required by net-print/cups-2.2.11::gentoo
+# required by gnome-base/gnome-settings-daemon-3.30.2-r1::gentoo[cups]
+# required by gnome-base/gnome-session-3.30.1-r1::gentoo
+# required by gnome-base/gnome-control-center-3.30.3-r1::gentoo
+# required by net-libs/gnome-online-accounts-3.30.2::gentoo[gnome]
+# required by gnome-extra/evolution-data-server-3.30.5-r1::gentoo[gnome-online-accounts]
+# required by gnome-base/gnome-shell-3.30.2-r2::gentoo
+# required by virtual/notification-daemon-0::gentoo[gnome]
+# required by x11-libs/libnotify-0.7.7-r1::gentoo
+# required by gnome-extra/nm-applet-1.8.20::gentoo
+>=app-text/ghostscript-gpl-9.26 cups
+# required by dev-libs/libgusb-0.2.11::gentoo
+# required by x11-misc/colord-1.3.5::gentoo[gusb]
+# required by gnome-base/gnome-settings-daemon-3.30.2-r1::gentoo[colord]
+# required by gnome-base/gnome-session-3.30.1-r1::gentoo
+# required by gnome-base/gnome-control-center-3.30.3-r1::gentoo
+# required by net-libs/gnome-online-accounts-3.30.2::gentoo[gnome]
+# required by gnome-extra/evolution-data-server-3.30.5-r1::gentoo[gnome-online-accounts]
+# required by gnome-base/gnome-shell-3.30.2-r2::gentoo
+# required by virtual/notification-daemon-0::gentoo[gnome]
+# required by x11-libs/libnotify-0.7.7-r1::gentoo
+# required by gnome-extra/nm-applet-1.8.20::gentoo
+>=virtual/libusb-1-r2 udev
+# required by virtual/libusb-1-r2::gentoo
+# required by sys-power/upower-0.99.9-r1::gentoo
+# required by gnome-base/gnome-settings-daemon-3.30.2-r1::gentoo
+# required by gnome-base/gnome-session-3.30.1-r1::gentoo
+# required by gnome-base/gnome-control-center-3.30.3-r1::gentoo
+# required by net-libs/gnome-online-accounts-3.30.2::gentoo[gnome]
+# required by gnome-extra/evolution-data-server-3.30.5-r1::gentoo[gnome-online-accounts]
+# required by gnome-base/gnome-shell-3.30.2-r2::gentoo
+# required by virtual/notification-daemon-0::gentoo[gnome]
+# required by x11-libs/libnotify-0.7.7-r1::gentoo
+# required by gnome-extra/nm-applet-1.8.20::gentoo
+>=dev-libs/libusb-1.0.21 udev
+# required by app-i18n/ibus-libpinyin-1.9.2::gentoo[python_single_target_python3_6]
+# required by ibus-libpinyin (argument)
+>=dev-lang/python-3.6.5 sqlite
+
+>=x11-libs/gdk-pixbuf-2.38.1 jpeg
+# required by media-video/gnome-mpv-0.16::gentoo
+# required by gnome-mpv (argument)
+>=media-video/mpv-0.27.2 libmpv
+# required by app-emulation/virt-manager-2.0.0::gentoo[gtk]
+# required by virt-manager (argument)
+>=net-misc/spice-gtk-0.35 usbredir
+# required by app-emulation/libvirt-5.2.0-r2::gentoo[virt-network]
+# required by libvirt (argument)
+>=net-dns/dnsmasq-2.80 script

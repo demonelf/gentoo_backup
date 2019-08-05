@@ -194,8 +194,13 @@ clean:
 								-rm  --force  $(EXECUTABLE) $(OBJECTS) $(PREREQUISITES) *~
 
 rsync:
+								rsync -aP /home/demonelf/Documents/cmd.txt ./
+								rsync -aP /home/demonelf/Documents/qemu.txt ./
 								rsync -ap ~/.vimrc ./
 								rsync -aP ~/.vim ./
+								rsync -aP /etc/portage ./
+								rsync -aP /var/lib/portage/world ./
+								sudo rsync -aP /boot/grub/grub.cfg ./
 
 push:
 								@rm  --force  $(EXECUTABLE) $(OBJECTS) $(PREREQUISITES) *~

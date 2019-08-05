@@ -1,0 +1,151 @@
+我的系统升级过程：
+    # emerge --sync             //更新Portage树
+    # emerge -atuDN world       //升级整个系统 emerge --ask --verbose --update --deep --newuse @world
+    # emerge -at --depclean     //排除不需要的包
+    # etc-update                //如有必要，更新配置文件, 也可用升级版dispatch-conf	
+    # emerge @preserved-rebuild //重新构建动态链接,也可用gentoolkit包里面的一个软件revdep-rebuild
+    # env-update && source      //如有必要，更新环境变量 /etc/profile 
+    # emerge @module-rebuild    //升级内核后, 也可用gentoolkit包里面的revdep-rebuild
+    # emerge @x11-module-rebuild @module-rebuild //如果因为更新xorg-server鼠标键盘失灵可以尝试此命令.
+
+Gentoo 升级系统特殊命令
+    #emerge portage			    //如果不是最新的portage，需要按提示执行此操作
+    #emerge python			    //如果不是最新的python，需要按提示执行此操作
+    #emerge -e world		    //本地重新编译整个系统，USE标记变化不大时不需执行
+    #/usr/sbin/update-python	//执行完emerge python后执行此操作
+
+ 
+包管理:
+    参数说明： --emptytree (-e)  
+    #检查tree错误
+    sudo emaint --check world
+    #修复tree错误
+    sudo emaint --fix world
+    
+    eix  搜索软件包
+    eix -I 列出系统中已安装的软件包
+    
+    equery files    列出已安装包的文档
+    equery belongs  查询已安装的指定文档属于哪个包
+    ebuild digest   生成摘要文档
+    ebuild config   初始化配置
+    ebuild digest   生成摘要文档
+    ebuild config   初始化配置
+
+更新内核:
+    0、查看编译选项
+        make help
+    1、指向新的源代码文件夹
+        eselect kernel list
+        eselect kernel set <n>
+    2、拷贝以前的内核配置
+        cp old_source/.config /usr/src/linux/
+        ln -sf /usr/src/linux-3.16.3 /usr/src/linux
+    3、配置内核
+        make (silent)oldconfig
+        make menuconfig
+    4、编译并安装  /lib/modules
+        make && make modules_install 
+        make install 
+    5、genkernel准备initramfs 
+        genkernel --install initramfs 
+    6、安装依赖内核的模块
+        make modules_prepare 在内核没有编译过的情况下:准备好编译模块所需要的内核源码树（简称内核树）
+        emerge -av @module-rebuild
+    7、配置grub
+
+    make oldconfig 和 make defconfig的区别：
+    oldconfig是将当前内核源码的新特性加入.config中去。
+    defconfig是直接按照默认的i386_defconfig生成.config。
+    make oldconfig 和 make defconfig是在Linux 内核配置方式中出现的。相关的还有：
+    #make config
+    #make menuconfig
+    #make gconfig
+    #make allyesconfig
+    #make allmodconfig
+
+使用ubuntu-kernel
+    拷贝：
+        vmlinuz-4.18.0-15-generic
+        initrd.img-4.18.0-15-generic
+        config-4.18.0-15-generic
+        /lib/modules/4.18.0-15-generic
+        #带有-generic的目录基本都是符号链接
+        #/usr/src/linux-headers-4.18.0-15 Header files related to Linux kernel version 4.18.0-15
+        #/usr/src/linux-headers-4.18.0-15-generic Linux kernel headers for version 4.18.0-15 on x86/x86_64
+    复制#grub配置:
+        menuentry 'Ubuntu' --class ubuntu --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-simple-59c48bfa-ee8f-47d4-ae00-e446a49d32a8' {
+            set boot_uuid="85e6dade-5c57-4ae2-a742-3aeba7a3e3d3"
+            set root_uuid="85e6dade-5c57-4ae2-a742-3aeba7a3e3d3"
+            if [ x$grub_platform = xxen ]; then insmod xzio; insmod lzopio; fi
+            insmod part_msdos
+            insmod ext2
+            linux   /boot/vmlinuz-4.18.0-15-generic waitusb=10:UUID=$root_uuid root=UUID=$root_uuid init=/usr/lib/systemd/systemd
+            initrd  /boot/initrd.img-4.18.0-15-generic
+        }
+
+
+
+    
+升级显卡驱动: nvidia-drivers
+    重装以下:
+    1. xorg-server xorg-drivers
+    2. xf86-input-libinput xf86-input-mouse xf86-input-synaptics xf86-video-fbdev
+
+grub相关:
+    不生成grub.cfg --root-directory已经慢慢被淘汰
+    sudo grub-install --root-directory=/mnt /dev/sda 
+    //grub-install: warning: this GPT partition label contains no BIOS Boot Partition; embedding won't be possible
+    parted /dev/sdb set 1 bios_grub on
+    
+parted:
+    mklabel gpt
+    mkpart primary 0 250
+    mkpart primary 251 252
+    set 1 boot
+    set 2 bios_grub on
+    mkfs.vfat -F 32 /dev/sdb1
+
+应用相关:
+    sudo mount -t cifs //192.168.137.1/share /home/demonelf/Desktop/project -o username=demonelf,password=898781869,rw,uid=0,gid=0,dir_mode=0777,file_mode=0777
+    synergyc -n demonelf 192.168.137.1
+    
+    sudo mount -t cifs //192.168.137.1/share /home/demonelf/Desktop/project -o username=demonelf,password=898781869,rw,uid=0,gid=0,dir_mode=0777,file_mode=0777
+    sshfs demonelf@192.168.2.27:/run/media thinkpad/
+    synergyc -n demonelf 192.168.137.1
+    
+    eval $(gnome-keyring-daemon --components=pkcs11,secrets,ssh,gpg)
+    export GNOME_KEYRING_PID
+    export GNOME_KEYRING_SOCKET
+    export SSH_AUTH_SOCK
+    export GPG_AGENT_INFO
+
+    sudo systemctl start btrfs-swapon.service
+    sudo systemctl start libvirtd.service
+    sudo systemctl start virtlogd
+
+    set bootargs root=/dev/nfs nfsroot=192.168.2.2:/home/demonelf/Desktop/nfsroot ip=192.168.2.3 console=ttySAC0,115200
+    set serverip 192.168.2.2
+    set gatewayip 192.168.2.2
+    set ipaddr 192.168.2.3  
+    saveenv
+    printenv
+
+chroot:
+mount --types proc /proc /mnt/gentoo/proc
+mount --rbind /sys /mnt/gentoo/sys
+mount --make-rslave /mnt/gentoo/sys
+mount --rbind /dev /mnt/gentoo/dev
+mount --make-rslave /mnt/gentoo/dev
+chroot /mnt/gentoo /bin/bash
+source /etc/profile
+export PS1="(chroot) ${PS1}"
+
+portage相关的几个目录，未对目录作特别指定的话（可以指定，不赘述）：
+=====================
+/usr/lib/portage：portage程序所在位置，各种portage的行为，皆可通过阅读程序来获知
+/usr/portage：portage官方数据库本地同步目录
+/usr/portage/distfiles：包文件下载目录，网速不成问题的话，所有问题都可在当前没有emerge操作进行中时删除
+/var/lib/portage：某个系统信息记录位置，例如world列表文件
+/var/db/pkg：系统中安装的软件包信息
+/var/cache/edb：主要临时存放依赖关系信息，可以删除（但不要频繁删，如果当前dep目录有很多小文件时，可以考虑清空下），在需要时，数据都会重建
