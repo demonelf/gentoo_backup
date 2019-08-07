@@ -192,19 +192,16 @@ endef
 # ------------  remove hidden backup files  ------------------------------------
 clean:
 								-rm  --force  $(EXECUTABLE) $(OBJECTS) $(PREREQUISITES) *~
-
-rsync:
-								sudo rm -rf ./gentoo/* 
-								rsync -aP /home/demonelf/Documents/cmd.txt ./gentoo/
-								rsync -aP /home/demonelf/Documents/qemu.txt ./gentoo/
-								rsync -aP /home/demonelf/Documents/backup.sh ./gentoo/
-								rsync -ap ~/.vimrc ./gentoo/
-								rsync -aP ~/.vim ./gentoo/
-								rsync -aP /etc/portage ./gentoo/
-								rsync -aP /var/lib/portage/world ./gentoo/
-								sudo rsync -aP /boot/grub/grub.cfg ./gentoo/
-
 push:
+								@sudo rm -rf ./gentoo/* 
+								@rsync -aP /home/demonelf/Documents/cmd.txt ./gentoo/
+								@rsync -aP /home/demonelf/Documents/qemu.txt ./gentoo/
+								@rsync -aP /home/demonelf/Documents/backup.sh ./gentoo/
+								@rsync -ap ~/.vimrc ./gentoo/
+								@rsync -aP ~/.vim ./gentoo/
+								@rsync -aP /etc/portage ./gentoo/
+								@rsync -aP /var/lib/portage/world ./gentoo/
+								@sudo rsync -aP /boot/grub/grub.cfg ./gentoo/
 								@rm  --force  $(EXECUTABLE) $(OBJECTS) $(PREREQUISITES) *~
 								@rm  --force GPATH GRTAGS GTAGS .clang_complete
 								@sudo git add -A
