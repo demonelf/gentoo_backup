@@ -197,6 +197,7 @@ rsync:
 								sudo rm -rf ./gentoo/* 
 								rsync -aP /home/demonelf/Documents/cmd.txt ./gentoo/
 								rsync -aP /home/demonelf/Documents/qemu.txt ./gentoo/
+								rsync -aP /home/demonelf/Documents/backup.sh ./gentoo/
 								rsync -ap ~/.vimrc ./gentoo/
 								rsync -aP ~/.vim ./gentoo/
 								rsync -aP /etc/portage ./gentoo/
