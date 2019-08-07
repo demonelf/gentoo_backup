@@ -1,5 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
-let g:netrw_dirhist_1='/run/media/demonelf/c0c31904-18ae-405e-8cf7-47a65eacb38e/00.mywork/witcloud/natc'
-let g:netrw_dirhist_2='/run/media/demonelf/c0c31904-18ae-405e-8cf7-47a65eacb38e/00.mywork/witcloud'
-let g:netrw_dirhist_3='/run/media/demonelf/c0c31904-18ae-405e-8cf7-47a65eacb38e/00.mywork/witcloud/natc'
