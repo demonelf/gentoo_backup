@@ -207,10 +207,10 @@ rsync:
 push:
 								@rm  --force  $(EXECUTABLE) $(OBJECTS) $(PREREQUISITES) *~
 								@rm  --force GPATH GRTAGS GTAGS .clang_complete
-								@git add -A
+								@sudo git add -A
 								@read -p "Enter comment: " comment; \
 								sudo git commit -m "$$comment"
-								@git push
+								@sudo git push
 							 
 
 # ------------ tarball generation ----------------------------------------------

@@ -4,6 +4,7 @@ app-editors/vim
 app-emulation/virt-manager
 app-i18n/ibus-libpinyin
 app-portage/gentoolkit
+dev-ruby/git
 dev-util/ccache
 dev-util/ctags
 dev-util/global
