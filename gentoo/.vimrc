@@ -396,6 +396,7 @@ set completeopt=longest
 " or path directly to the library file
 let g:clang_use_library         = 1
 "http://releases.llvm.org/8.0.0/clang+llvm-8.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz
+"cp /lib64/libtinfo.so.6 clang+llvm-8.0.0-x86_64-linux-gnu-ubuntu-18.04/lib/libtinfo.so.5
 let g:clang_library_path        ='/home/demonelf/Documents/clang+llvm-8.0.0-x86_64-linux-gnu-ubuntu-18.04/lib/libclang.so'
 "自动选择第一个匹配项但不插入到代码中
 let g:clang_auto_select         = 1
@@ -502,6 +503,8 @@ let NERDTreeIgnore                  = ['GPATH','GRTAGS','GTAGS','.*\.o$','.*\.ko
 let NERDTreeWinSize                 = 26
 let g:NERDTreeDirArrowExpandable    = '▩'
 let g:NERDTreeDirArrowCollapsible   = '▤'
+" 在终端启动vim时，共享NERDTree
+let g:nerdtree_tabs_open_on_console_startup=1
 
 "ctrlp 
 let g:ctrlp_map                     = '<c-p>'
@@ -528,7 +531,7 @@ nnoremap <silent> <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 "设置切换Buffer快捷键"
 nnoremap <C-Right> :bn<CR>
 nnoremap <C-Left> :bp<CR>
-nnoremap <C-c> :bd<CR>
+nnoremap <C-c> :bp<cr> :bd #<CR>
 
 "全屏显示
 if has("win32")

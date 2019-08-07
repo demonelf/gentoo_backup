@@ -1,6 +1,6 @@
 app-editors/vim cscope python
 net-misc/remmina rdp vnc ssh
-gnome-base/gvfs udisks
-app-emulation/qemu virgl
+sys-apps/util-linux static-libs
+net-misc/spice-gtk usbredir
 app-emulation/libvirt virt-network
-
+net-dns/dnsmasq script

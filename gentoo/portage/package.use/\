@@ -1,0 +1,3 @@
+app-editors/vim cscope python
+net-misc/remmina rdp vnc ssh
+app-emulation/qemu -sdl -opengl 

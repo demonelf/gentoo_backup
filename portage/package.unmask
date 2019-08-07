@@ -1,5 +1,0 @@
-# required by openocd (argument)
-# /var/db/repos/gentoo/profiles/arch/amd64/no-multilib/package.mask:
-# AMD64 Team <amd64@gentoo.org>
-# Mask packages that rely on amd64 multilib
-=dev-embedded/openocd-0.10.0

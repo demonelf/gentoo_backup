@@ -194,20 +194,21 @@ clean:
 								-rm  --force  $(EXECUTABLE) $(OBJECTS) $(PREREQUISITES) *~
 
 rsync:
-								rsync -aP /home/demonelf/Documents/cmd.txt ./
-								rsync -aP /home/demonelf/Documents/qemu.txt ./
-								rsync -ap ~/.vimrc ./
-								rsync -aP ~/.vim ./
-								rsync -aP /etc/portage ./
-								rsync -aP /var/lib/portage/world ./
-								sudo rsync -aP /boot/grub/grub.cfg ./
+								sudo rm -rf ./gentoo/* 
+								rsync -aP /home/demonelf/Documents/cmd.txt ./gentoo/
+								rsync -aP /home/demonelf/Documents/qemu.txt ./gentoo/
+								rsync -ap ~/.vimrc ./gentoo/
+								rsync -aP ~/.vim ./gentoo/
+								rsync -aP /etc/portage ./gentoo/
+								rsync -aP /var/lib/portage/world ./gentoo/
+								sudo rsync -aP /boot/grub/grub.cfg ./gentoo/
 
 push:
 								@rm  --force  $(EXECUTABLE) $(OBJECTS) $(PREREQUISITES) *~
 								@rm  --force GPATH GRTAGS GTAGS .clang_complete
 								@git add -A
 								@read -p "Enter comment: " comment; \
-								git commit -m "$$comment"
+								sudo git commit -m "$$comment"
 								@git push
 							 
 

@@ -149,3 +149,82 @@ portage相关的几个目录，未对目录作特别指定的话（可以指定�
 /var/lib/portage：某个系统信息记录位置，例如world列表文件
 /var/db/pkg：系统中安装的软件包信息
 /var/cache/edb：主要临时存放依赖关系信息，可以删除（但不要频繁删，如果当前dep目录有很多小文件时，可以考虑清空下），在需要时，数据都会重建
+
+安装记录：
+
+#准备文件系统
+cd /mnt/gentoo
+tar xpvf stage3-amd64-systemd-20190803.tar.bz2 --xattrs-include='*.*' --numeric-owner
+cp /etc/portage/make.conf /mnt/gentoo/etc/portage/make.conf
+cp /etc/portage/package.use/custom /mnt/gentoo/etc/portage/package.use/
+mkdir /mnt/gentoo/etc/portage/repos.conf
+cp /etc/portage/repos.conf/gentoo.conf /mnt/gentoo/etc/portage/repos.conf/  
+cp --dereference /etc/resolv.conf /mnt/gentoo/etc/
+cp /usr/share/fonts/iosevka-cc-* /mnt/gentoo/usr/share/fonts/
+cp /usr/share/fonts/SIMYOU.TTF /mnt/gentoo/usr/share/fonts/
+
+#使用已有内核
+cp /boot/vmlinuz-4.4.0-112-generic /mnt/gentoo/boot/
+cp /boot/initrd.img-4.4.0-112-generic /mnt/gentoo/boot/
+mkdir /mnt/gentoo/lib/modules
+cp -ar /lib/modules/4.18.0-15-generic /mnt/gentoo/lib/modules/
+cp -ar /usr/src/linux /mnt/gentoo/usr/src/
+
+#chroot
+mount --types proc /proc /mnt/gentoo/proc
+mount --rbind /sys /mnt/gentoo/sys
+mount --make-rslave /mnt/gentoo/sys
+mount --rbind /dev /mnt/gentoo/dev
+mount --make-rslave /mnt/gentoo/dev
+chroot /mnt/gentoo /bin/bash
+source /etc/profile
+export PS1="(chroot) ${PS1}"
+
+#配置profile
+emerge-webrsync
+eselect profile list
+[7]   default/linux/amd64/17.0/desktop/gnome/systemd (stable)
+eselect profile set 7
+emerge -av dev-util/ccache
+emerge --ask --verbose --update --deep --newuse @world
+
+#安装内核
+##使用已有内核可省略
+
+#引导引导配置
+emerge -av sys-boot/grub:2
+grub-install /dev/sda
+grub-mkconfig -o /boot/grub/grub.cfg
+nano /etc/fstab
+#UUID=c4674797-28c6-49ff-bc33-477d49fa98a8       /       btrfs       noatime,discard     0 0
+
+#创建用户
+passwd
+useradd -m -G users demonelf
+passwd demonelf
+
+#安装gnome
+emerge -av gnome-base/gnome-light
+env-update && source /etc/profile
+gpasswd -a demonelf plugdev
+gpasswd -a demonelf video
+emerge -av gnome-extra/gnome-shell-extensions
+emerge -av gnome-extra/chrome-gnome-shell
+
+#安装无线网卡驱动
+emerge -av sys-kernel/linux-firmware
+
+#常用软件
+emerge -av app-admin/sudo
+emerge -av app-i18n/ibus-libpinyin
+emerge -av net-misc/aria2
+emerge -av sys-fs/ntfs3g
+emerge -av www-client/google-chrome
+emerge -av app-editors/vim dev-util/ctags dev-util/global
+
+#安装好gnome-light 在界面配置以下
+##时区 配置地区 网络信息 主机名、域名信息 配置网络
+##系统日志工具
+
+
+
