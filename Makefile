@@ -198,7 +198,6 @@ push:
 								@rsync -aP /home/demonelf/Documents/qemu.txt ./gentoo/
 								@rsync -aP /home/demonelf/Documents/backup.sh ./gentoo/
 								@rsync -ap ~/.vimrc ./gentoo/
-								@rsync -aP ~/.vim ./gentoo/
 								@rsync -aP /etc/portage ./gentoo/
 								@rsync -aP /var/lib/portage/world ./gentoo/
 								@sudo rsync -aP /boot/grub/grub.cfg ./gentoo/

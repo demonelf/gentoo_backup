@@ -310,7 +310,7 @@ highlight Folded guifg=grey
 "highlight LineNr ctermbg=235 ctermfg=145 guifg=grey guibg=#292D3E
 highlight LineNr ctermbg=235 ctermfg=145 guifg=grey
 "highlight Cursor guifg=grey guibg=black
-"highlight CursorLine  guibg=NONE guifg=white
+highlight CursorLine  guibg=NONE guifg=white
 " 背景透明 #292D3E
 highlight Normal guibg=NONE ctermbg=NONE
 
@@ -363,13 +363,6 @@ let g:airline#extensions#tabline#enabled        = 1     "tabline中当前buffer�
 "let g:airline#extensions#tabline#left_alt_sep   = ''   "tabline中未激活buffer两端的分隔字符
 "let g:airline#extensions#tabline#right_sep      = ''   
 "let g:airline#extensions#tabline#right_alt_sep  = ''   
-
-"http://www.unicode.org/charts/PDF/U2B00.pdf
-"let g:airline#extensions#tabline#left_sep       = "\uE0B2"   "tabline中未激活buffer两端的分隔字符
-"let g:airline#extensions#tabline#left_alt_sep   = ''   "tabline中未激活buffer两端的分隔字符
-"let g:airline#extensions#tabline#right_sep      = ''   
-"let g:airline#extensions#tabline#right_alt_sep  = ''   
-
 
 let g:airline#extensions#tabline#tab_nr_type    = 1 " tab number
 let g:airline#extensions#tabline#show_tab_nr    = 1
@@ -471,7 +464,7 @@ let g:neocomplcache_force_omni_patterns.objc   = '[^.[:digit:] *\t]\%(\.\|->\)'
 let g:neocomplcache_force_omni_patterns.objcpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 let g:neocomplcache_force_omni_patterns.go     = '[^.[:digit:] *\t]\%(\.\|->\)'
 let g:clang_complete_auto = 0
-"let g:clang_auto_select = 0
+let g:clang_auto_select = 0
 "let g:clang_use_library = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -645,8 +638,8 @@ else
 
     function! UPDATE_TAGS()
         let _f_ = expand("%:p")
-        exec 'silent !cd ' . '' . g:ProjDir . ''.'&& gtags --single-update ' . '' . _f_ . '' . '  '.'' . g:ProjDir . ''
-        "exec '!gtags --single-update ' . '' . _f_ . '' . '  '.'' . g:ProjDir . ''
+        exec 'silent !cd ' . '' . g:ProjDir . ''
+        exec 'silent !gtags --single-update ' . '' . _f_ . ''
         unlet _f_
     endfunction
 endif

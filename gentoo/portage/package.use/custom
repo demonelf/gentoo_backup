@@ -4,3 +4,5 @@ sys-apps/util-linux static-libs
 net-misc/spice-gtk usbredir
 app-emulation/libvirt virt-network
 net-dns/dnsmasq script
+gnome-base/gvfs samba
+media-video/mpv libmpv
