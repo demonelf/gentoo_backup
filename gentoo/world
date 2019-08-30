@@ -10,6 +10,7 @@ dev-util/ccache
 dev-util/ctags
 dev-util/global
 gnome-base/gnome-light
+gnome-extra/gnome-calculator
 media-gfx/eog
 media-video/gnome-mpv
 net-dialup/minicom
@@ -18,6 +19,9 @@ net-misc/bridge-utils
 net-misc/remmina
 net-misc/telnet-bsd
 net-misc/vconfig
+sys-apps/ipmitool
+sys-apps/pciutils
+sys-apps/usbutils
 sys-fs/btrfs-progs
 sys-fs/ntfs3g
 sys-kernel/linux-firmware

@@ -44,22 +44,35 @@ endif
 "设置按下鼠标右键之后像vim一样弹出菜单
 "set mousemodel=popup
 
-"set keywordprg=sdcv         "按K键查找光标处单词的帮助，默认是man
-"set ambiwidth=double        "等宽
-
-
-"let $VIMRUNTIME="~/.vim/"  
-"set runtimepath=~/.vim/
-"source $VIMRUNTIME/vimrc_example.vim
-
-"在normal模式下使用系统剪贴板(例如用y复制时)
-"set clipboard+=unnamed
+"n 普通模式
+"v 可视模式
+"i 插入模式
+"c 命令行模式
+"h 编辑帮助文件时，所有前面的模式
+"a 所有前面的模式
+"r |hit-enter| 和 |more-prompt| 提示时
+"A 可视模式的自动选择
+set mouse=a
 
 "合并系统剪切板 xsel
 set clipboard^=unnamed,unnamedplus
 
-"鼠标右键 y复制中键粘贴
-"set mouse=a
+set cursorline
+"hi CursorLine  cterm=NONE   ctermbg=darkred ctermfg=white
+"hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white
+"插入模式时是红色
+"au InsertLeave * hi Cursor gui=red
+"离开插入模式时是绿色
+"au InsertEnter * hi Cursor gui=green
+"光标不闪烁
+"set gcr=a:block-blinkon0
+
+"set keywordprg=sdcv         "按K键查找光标处单词的帮助，默认是man
+"set ambiwidth=double        "等宽
+
+"let $VIMRUNTIME="~/.vim/"  
+"set runtimepath=~/.vim/
+"source $VIMRUNTIME/vimrc_example.vim
 
 "自动切换目录
 set autochdir
@@ -77,8 +90,10 @@ set nowrap
 "按完整单词折行
 set nolinebreak
 "set linebreak
+
 "行宽（输入时自动插入换行符）
 set textwidth=1024
+
 autocmd FileType * setlocal textwidth=1024 formatoptions+=t
 "set textwidth=0
 "set linespace=6
@@ -137,6 +152,7 @@ set scrolloff=3
 
 " 设置代码折叠
 set foldenable
+
 "如果发现文件类型为c或cpp，就启用折叠功能
 "autocmd FileType c,cpp setl fdm=syntax | setl fen
 set fdm=syntax          "用语法高亮来定义折叠
@@ -150,17 +166,6 @@ set fdm=syntax          "用语法高亮来定义折叠
 "autocmd FileType c,cpp set shiftwidth=3 | set expandtab 
 "c,cpp缩进
 "set cindent
-
-
-set cursorline
-"hi CursorLine  cterm=NONE   ctermbg=darkred ctermfg=white
-"hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white
-"插入模式时是红色
-"au InsertLeave * hi Cursor gui=red
-"离开插入模式时是绿色
-"au InsertEnter * hi Cursor gui=green
-"光标不闪烁
-"set gcr=a:block-blinkon0
 
 "屏蔽系统输入法
 "set imactivatekey=C-space
@@ -221,10 +226,11 @@ Bundle 'snipMate'
 "Bundle 'fatih/vim-go'
 "Bundle 'nsf/gocode'
 "Bundle 'nsf/gocode', {'rtp': 'vim/'}
+"Bundle 'gabrielelana/vim-markdown'
 
 "theme
 Bundle 'vim-airline/vim-airline'
-Bundle 'vim-airline/vim-airline-themes'
+"Bundle 'vim-airline/vim-airline-themes'
 "Bundle 'itchyny/lightline.vim'
 "
 "Bundle 'rakr/vim-two-firewatch'
@@ -334,7 +340,7 @@ endif
 "--------------------------------------------------------------------------
 "vim-airline
 "--------------------------------------------------------------------------
-let g:airline_theme                             ="bubblegum" 
+let g:airline_theme                             ="onedark" 
 "这个是安装字体后 必须设置此项" 
 let g:airline_powerline_fonts                   = 1  
 " old vim-powerline symbols
@@ -371,14 +377,18 @@ let g:airline#extensions#tabline#enabled        = 1     "tabline中当前buffer�
 "let g:airline#extensions#tabline#right_alt_sep  = ''   
 
 
-let g:airline#extensions#tabline#tab_nr_type    = 1 " tab number
-let g:airline#extensions#tabline#show_tab_nr    = 1
-let g:airline#extensions#tabline#tab_nr_type    = 1
-"let g:airline#extensions#tabline#buffer_nr_show = 1      
-let g:airline#extensions#tabline#formatter      = 'unique_tail' "default jsformatter unique_tail unique_tail_improved
-let g:airline#extensions#tabline#fnametruncate  = 16
-let g:airline#extensions#tabline#fnamecollapse  = 2
 let g:airline#extensions#tabline#buffer_idx_mode= 1
+let g:airline#extensions#tabline#show_buffers   = 10
+let g:airline#extensions#tabline#formatter      = 'unique_tail' "default jsformatter unique_tail unique_tail_improved
+let g:airline#extensions#tabline#show_close_button = 1
+let airline#extensions#tabline#tabs_label = ''
+let airline#extensions#tabline#show_splits = 0
+
+"let g:airline#extensions#tabline#show_tab_nr    = 1
+"let g:airline#extensions#tabline#tab_nr_type    = 1
+"let g:airline#extensions#tabline#buffer_nr_show = 1      
+"let g:airline#extensions#tabline#fnametruncate  = 16
+"let g:airline#extensions#tabline#fnamecollapse  = 2
  
 "==============================主题和样式================================="
 
@@ -511,17 +521,17 @@ map <C-F12> :TagbarToggle<CR>
 let g:tagbar_updateonsave_maxlines  = 1	"文件保存时自动更新tagbar
 "let g:tagbar_ctags_bin              ='/usr/bin/ctags' 
 let g:tagbar_compact                = 1	"隐藏最上方的帮助提示
-let g:tagbar_width                  = 23
-let g:tagbar_left                   = 1  
+let g:tagbar_width                  = 24
+let g:tagbar_left                   = 0  
 let g:tagbar_sort                   = 0
 
 "TreeToggle
 map <F12> :NERDTreeToggle<CR>
 imap <F12> <ESC>:NERDTreeToggle<CR>
 let NERDTreeQuitOnOpen              = 0
-let NERDTreeWinPos                  ='right'
+let NERDTreeWinPos                  ='left'
 let NERDTreeIgnore                  = ['GPATH','GRTAGS','GTAGS','.*\.o$','.*\.ko$','.*\.gz$']
-let NERDTreeWinSize                 = 23
+let NERDTreeWinSize                 = 24
 let g:NERDTreeDirArrowExpandable    = '▩'
 let g:NERDTreeDirArrowCollapsible   = '▤'
 " 在终端启动vim时，共享NERDTree
@@ -552,9 +562,9 @@ nnoremap <silent> <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 
 
 "设置切换Buffer快捷键"
-nnoremap <C-Right> :bn<CR>
-nnoremap <C-Left> :bp<CR>
-nnoremap <C-c> :bp<cr> :bd #<CR>
+nnoremap <C-Right> :bn!<CR>
+nnoremap <C-Left> :bp!<CR>
+nnoremap <C-c> :bp \|bd #<CR>
 
 "全屏显示
 if has("win32")
