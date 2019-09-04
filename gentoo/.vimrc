@@ -74,6 +74,9 @@ set cursorline
 "set runtimepath=~/.vim/
 "source $VIMRUNTIME/vimrc_example.vim
 
+"切换buffer 不unload 保留ctrl r U 
+set hidden
+
 "自动切换目录
 set autochdir
 
@@ -316,15 +319,17 @@ highlight Folded guifg=grey
 "highlight LineNr ctermbg=235 ctermfg=145 guifg=grey guibg=#292D3E
 highlight LineNr ctermbg=235 ctermfg=145 guifg=grey
 "highlight Cursor guifg=grey guibg=black
-"highlight CursorLine  guibg=NONE guifg=white
+highlight CursorLine guibg=#303030
+highlight Visual guibg=#697098
+
 " 背景透明 #292D3E
 highlight Normal guibg=NONE ctermbg=NONE
 
 ".vim/bundle/vim-airline/autoload/airline/extensions/default.vim
-highlight airline_tabfill guibg=NONE ctermbg=NONE
-highlight airline_tabsel_to_airline_tabfill guibg=NONE
-highlight airline_tabfill_to_airline_tablabel_right guibg=NONE
-highlight airline_tabfill_to_airline_tabfill guifg=NONE guibg=NONE
+"highlight airline_tabfill guibg=NONE ctermbg=NONE
+"highlight airline_tabsel_to_airline_tabfill guibg=NONE
+"highlight airline_tabfill_to_airline_tablabel_right guibg=NONE
+"highlight airline_tabfill_to_airline_tabfill guifg=NONE guibg=NONE
 
 set t_Co=256
 if has("termguicolors")
@@ -363,7 +368,8 @@ let g:airline_symbols.paste                     = 'Þ'
 let g:airline_symbols.whitespace                = 'Ξ'
 
 " 开启tabline
-let g:airline#extensions#tabline#enabled        = 1     "tabline中当前buffer两端的分隔字符
+let g:airline#extensions#tabline#enabled        = 1 
+let g:airline#extensions#tabline#show_close_button = 1
 
 "let g:airline#extensions#tabline#left_sep       = ''   "tabline中未激活buffer两端的分隔字符
 "let g:airline#extensions#tabline#left_alt_sep   = ''   "tabline中未激活buffer两端的分隔字符
@@ -380,15 +386,13 @@ let g:airline#extensions#tabline#enabled        = 1     "tabline中当前buffer�
 let g:airline#extensions#tabline#buffer_idx_mode= 1
 let g:airline#extensions#tabline#show_buffers   = 10
 let g:airline#extensions#tabline#formatter      = 'unique_tail' "default jsformatter unique_tail unique_tail_improved
-let g:airline#extensions#tabline#show_close_button = 1
-let airline#extensions#tabline#tabs_label = ''
-let airline#extensions#tabline#show_splits = 0
-
-"let g:airline#extensions#tabline#show_tab_nr    = 1
-"let g:airline#extensions#tabline#tab_nr_type    = 1
-"let g:airline#extensions#tabline#buffer_nr_show = 1      
-"let g:airline#extensions#tabline#fnametruncate  = 16
-"let g:airline#extensions#tabline#fnamecollapse  = 2
+let g:airline#extensions#tabline#tabs_label     = ''
+let g:airline#extensions#tabline#show_splits    = 1
+let g:airline#extensions#tabline#show_tab_nr    = 0
+let g:airline#extensions#tabline#tab_nr_type    = 1
+let g:airline#extensions#tabline#buffer_nr_show = 0      
+let g:airline#extensions#tabline#fnametruncate  = 16
+let g:airline#extensions#tabline#fnamecollapse  = 2
  
 "==============================主题和样式================================="
 
@@ -524,6 +528,10 @@ let g:tagbar_compact                = 1	"隐藏最上方的帮助提示
 let g:tagbar_width                  = 24
 let g:tagbar_left                   = 0  
 let g:tagbar_sort                   = 0
+autocmd FileType tagbar noremap <buffer> <c-left> <nop>
+autocmd FileType tagbar noremap <buffer> <c-h> <nop>
+autocmd FileType tagbar noremap <buffer> <c-right> <nop>
+autocmd FileType tagbar noremap <buffer> <c-l> <nop>
 
 "TreeToggle
 map <F12> :NERDTreeToggle<CR>
@@ -538,6 +546,11 @@ let g:NERDTreeDirArrowCollapsible   = '▤'
 let g:nerdtree_tabs_open_on_console_startup=1
 "所有窗口关闭则退出
 autocmd BufEnter * if 0 == len(filter(range(1, winnr('$')), 'empty(getbufvar(winbufnr(v:val), "&bt"))')) | qa! | endif
+"tab 键对于nerdtree窗口无效（防止在nerdtree窗口切换buffer）
+autocmd FileType nerdtree noremap <buffer> <c-left> <nop>
+autocmd FileType nerdtree noremap <buffer> <c-h> <nop>
+autocmd FileType nerdtree noremap <buffer> <c-right> <nop>
+autocmd FileType nerdtree noremap <buffer> <c-l> <nop>
 
 "ctrlp 
 let g:ctrlp_map                     = '<c-p>'
@@ -564,6 +577,8 @@ nnoremap <silent> <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 "设置切换Buffer快捷键"
 nnoremap <C-Right> :bn!<CR>
 nnoremap <C-Left> :bp!<CR>
+nnoremap <C-l> :bn!<CR>
+nnoremap <C-h> :bp!<CR>
 nnoremap <C-c> :bp \|bd #<CR>
 
 "全屏显示
@@ -632,6 +647,8 @@ if has("win32")
     endfunction
 else
     if "makefile" ==? expand("%")
+        autocmd VimEnter * nested :TagbarOpen
+        autocmd VimEnter * nested :NERDTree
         autocmd BufWritePost *.cpp,*.cc,*.h,*.c,*.s call UPDATE_TAGS()
         if filereadable("GTAGS")
             cscope reset
