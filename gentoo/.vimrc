@@ -218,6 +218,7 @@ Bundle 'rip-rip/clang_complete'
 "neocomplete需要lua
 "Bundle 'Shougo/neocomplete.vim'
 "Bundle 'rhysd/vim-clang-format'
+"Bundle 'justmao945/vim-clang'
 
 "YCM等于以上两个包 并支持各种语言
 "Bundle 'Valloric/YouCompleteMe'
@@ -230,6 +231,9 @@ Bundle 'snipMate'
 "Bundle 'nsf/gocode'
 "Bundle 'nsf/gocode', {'rtp': 'vim/'}
 "Bundle 'gabrielelana/vim-markdown'
+
+Bundle 'yggdroot/indentline'
+"Bundle 'vim-syntastic/syntastic'
 
 "theme
 Bundle 'vim-airline/vim-airline'
@@ -250,6 +254,8 @@ Bundle 'lifepillar/vim-wwdc17-theme'
 Bundle 'joshdick/onedark.vim'
 Bundle 'drewtempelmeyer/palenight.vim'
 Bundle 'morhetz/gruvbox'
+Bundle 'ryanoasis/vim-devicons'
+Bundle 'kaicataldo/material.vim'
 
 "Bundle 'vimim/vimim'
 
@@ -292,7 +298,9 @@ syntax on
 
 "set background=dark
 "colorscheme skeletor
-colorscheme palenight
+"colorscheme palenight
+colorscheme material
+let g:material_theme_style = 'palenight' 
 
 "let g:onedark_termcolors=16
 "colorscheme onedark
@@ -323,7 +331,7 @@ highlight CursorLine guibg=#303030
 highlight Visual guibg=#697098
 
 " 背景透明 #292D3E
-highlight Normal guibg=NONE ctermbg=NONE
+"highlight Normal guibg=NONE ctermbg=NONE
 
 ".vim/bundle/vim-airline/autoload/airline/extensions/default.vim
 "highlight airline_tabfill guibg=NONE ctermbg=NONE
@@ -354,6 +362,7 @@ let g:airline_powerline_fonts                   = 1
 "let g:airline_right_sep                         = ''
 "let g:airline_right_alt_sep                     = ''
 
+
 " 关闭状态显示空白符号计数
 let g:airline#extensions#whitespace#enabled     = 0
 let g:airline#extensions#whitespace#symbol      = '!'
@@ -369,31 +378,36 @@ let g:airline_symbols.whitespace                = 'Ξ'
 
 " 开启tabline
 let g:airline#extensions#tabline#enabled        = 1 
-let g:airline#extensions#tabline#show_close_button = 1
+"let g:airline#extensions#tabline#show_close_button = 1
 
-"let g:airline#extensions#tabline#left_sep       = ''   "tabline中未激活buffer两端的分隔字符
-"let g:airline#extensions#tabline#left_alt_sep   = ''   "tabline中未激活buffer两端的分隔字符
-"let g:airline#extensions#tabline#right_sep      = ''   
-"let g:airline#extensions#tabline#right_alt_sep  = ''   
 
-"http://www.unicode.org/charts/PDF/U2B00.pdf
-"let g:airline#extensions#tabline#left_sep       = "\uE0B2"   "tabline中未激活buffer两端的分隔字符
-"let g:airline#extensions#tabline#left_alt_sep   = ''   "tabline中未激活buffer两端的分隔字符
-"let g:airline#extensions#tabline#right_sep      = ''   
-"let g:airline#extensions#tabline#right_alt_sep  = ''   
-
+"https://github.com/ryanoasis/powerline-extra-symbols
+if get(g:, 'airline_powerline_fonts', 0)
+  "let g:airline#extensions#tabline#left_sep       = "\uE0B8"
+  "let g:airline#extensions#tabline#left_alt_sep   = "\uE0B9"
+  "let g:airline_left_sep                          = "\uE0B8"
+  "let g:airline_left_alt_sep                      = "\uE0B9"
+  "let g:airline_right_sep                         = "\uE0BE"
+  "let g:airline_right_alt_sep                     = "\uE0BF"
+else
+endif
+" set the CN (column number) symbol:
+"let g:airline_section_z = airline#section#create(["\uE0A1" . '%{line(".")}' . "\uE0A3" . '%{col(".")}'])
 
 let g:airline#extensions#tabline#buffer_idx_mode= 1
-let g:airline#extensions#tabline#show_buffers   = 10
+"let g:airline#extensions#tabline#show_buffers   = 10
 let g:airline#extensions#tabline#formatter      = 'unique_tail' "default jsformatter unique_tail unique_tail_improved
-let g:airline#extensions#tabline#tabs_label     = ''
-let g:airline#extensions#tabline#show_splits    = 1
-let g:airline#extensions#tabline#show_tab_nr    = 0
-let g:airline#extensions#tabline#tab_nr_type    = 1
-let g:airline#extensions#tabline#buffer_nr_show = 0      
-let g:airline#extensions#tabline#fnametruncate  = 16
-let g:airline#extensions#tabline#fnamecollapse  = 2
- 
+"let g:airline#extensions#tabline#tabs_label     = ''
+"let g:airline#extensions#tabline#show_splits    = 0
+"let g:airline#extensions#tabline#show_tab_nr    = 0
+"let g:airline#extensions#tabline#tab_nr_type    = 1
+"let g:airline#extensions#tabline#buffer_nr_show = 0      
+"let g:airline#extensions#tabline#fnametruncate  = 16
+"let g:airline#extensions#tabline#fnamecollapse  = 2
+"let g:airline#extensions#tabline#buffer_nr_show  = 1   
+"设置为双字宽显示，否则无法完整显示如:☆
+"set ambiwidth=double
+
 "==============================主题和样式================================="
 
 "==============================代码注释==================================="
@@ -489,7 +503,16 @@ let g:clang_complete_auto = 0
 "let g:clang_use_library = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+"indentLine
+let g:indentLine_enabled = 1
+"let g:indentLine_char='┆'
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+let g:indentLine_color_term = 239
+let g:indentLine_color_gui = "#555753"
+"let g:indentLine_color_tty_light = 7 " (default: 4)
+"let g:indentLine_color_dark = 1 " (default: 2)
+"let g:indentLine_bgcolor_term = 202
+"let g:indentLine_bgcolor_gui = '#FF5F00'
 "==============================代码补全==================================="
 
 "==============================代码格式化==================================="
@@ -540,8 +563,8 @@ let NERDTreeQuitOnOpen              = 0
 let NERDTreeWinPos                  ='left'
 let NERDTreeIgnore                  = ['GPATH','GRTAGS','GTAGS','.*\.o$','.*\.ko$','.*\.gz$']
 let NERDTreeWinSize                 = 24
-let g:NERDTreeDirArrowExpandable    = '▩'
-let g:NERDTreeDirArrowCollapsible   = '▤'
+"let g:NERDTreeDirArrowExpandable    = '▩'
+"let g:NERDTreeDirArrowCollapsible   = '▤'
 " 在终端启动vim时，共享NERDTree
 let g:nerdtree_tabs_open_on_console_startup=1
 "所有窗口关闭则退出

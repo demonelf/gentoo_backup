@@ -483,12 +483,21 @@ syn match cFunction "\<[a-zA-Z_][a-zA-Z_0-9]*\>\s*("me=e-1
 "粉色
 "hi cFunction gui=NONE guifg=#FF34B3
 "蓝色
-"hi cFunction gui=NONE guifg=#82b1ff
+hi cFunction gui=NONE guifg=#82b1ff
 "红色
-hi cFunction gui=NONE guifg=#ff5370 
+"hi cFunction gui=NONE guifg=#ff5370 
 "紫色
 "hi cFunction gui=NONE guifg=#c792ea
 "黄色
 "hi cFunction gui=NONE guifg=#FFD700 
+"绿色
+"hi cFunction gui=NONE guifg=Green
 
+"hi cFunction guifg=#ff5370 
+"hi cType guifg=#82b1ff
+"hi cStorageClass guifg=#c792ea
+
+
+hi cType guifg=#c792ea
+hi cStorageClass guifg= #ff5370 
 
