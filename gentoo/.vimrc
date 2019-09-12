@@ -182,6 +182,10 @@ filetype plugin on
 filetype indent on
 
 "set lines=26 columns=88
+
+"https://openwares.net/2016/10/16/vim-autoread/
+set autoread                                                                                                                                                                                    
+au CursorHold * checktime 
 "=================================系统===================================="
 "
 "================================Vundle==================================="
@@ -320,7 +324,7 @@ let g:material_theme_style = 'palenight'
 
 " highlight
 " 注释颜色
-highlight Comment ctermfg=grey guifg=grey 
+"highlight Comment ctermfg=grey guifg=grey 
 " 折叠颜色
 highlight Folded guifg=grey
 " 行号背景
@@ -331,7 +335,7 @@ highlight CursorLine guibg=#303030
 highlight Visual guibg=#697098
 
 " 背景透明 #292D3E
-"highlight Normal guibg=NONE ctermbg=NONE
+highlight Normal guibg=NONE ctermbg=NONE
 
 ".vim/bundle/vim-airline/autoload/airline/extensions/default.vim
 "highlight airline_tabfill guibg=NONE ctermbg=NONE
@@ -508,7 +512,7 @@ let g:indentLine_enabled = 1
 "let g:indentLine_char='┆'
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 let g:indentLine_color_term = 239
-let g:indentLine_color_gui = "#555753"
+let g:indentLine_color_gui = "#686868"
 "let g:indentLine_color_tty_light = 7 " (default: 4)
 "let g:indentLine_color_dark = 1 " (default: 2)
 "let g:indentLine_bgcolor_term = 202
@@ -695,7 +699,7 @@ else
 
     function! UPDATE_TAGS()
         let _f_ = expand("%:p")
-        exec 'silent !cd ' . '' . g:ProjDir . ''.'&& gtags --single-update ' . '' . _f_ . '' . '  '.'' . g:ProjDir . ''
+        exec 'silent !cd ' . '' . g:ProjDir . ''.'&& gtags --single-update ' . '' . _f_ . '' . '  '.'' . g:ProjDir . ''. ' &'
         "exec '!gtags --single-update ' . '' . _f_ . '' . '  '.'' . g:ProjDir . ''
         unlet _f_
     endfunction

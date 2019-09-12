@@ -10,12 +10,14 @@ dev-util/ccache
 dev-util/ctags
 dev-util/global
 dev-util/meld
+dev-util/strace
 gnome-base/gnome-light
 gnome-extra/gnome-calculator
 media-gfx/eog
 media-video/gnome-mpv
 net-analyzer/tcpdump
 net-dialup/minicom
+net-fs/sshfs
 net-misc/aria2
 net-misc/bridge-utils
 net-misc/iperf
@@ -26,6 +28,8 @@ sys-apps/ipmitool
 sys-apps/pciutils
 sys-apps/usbutils
 sys-apps/usermode-utilities
+sys-boot/grub
+sys-devel/gdb
 sys-fs/btrfs-progs
 sys-fs/ntfs3g
 sys-kernel/linux-firmware
